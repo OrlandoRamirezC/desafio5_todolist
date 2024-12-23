@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Roboto", sans-serif;
+}
+
+section {
+    display: flex;
+    justify-content: center;
+    padding-top: 2rem;
+}
+
+.titulo {
+    padding: 0.8rem;
+    border-bottom: solid grey 1px;
+    grid-area: titulo;
+}
+
+.titulo h2 {
+    font-size: 2rem;
+}
+
+.nueva_tarea {
+    padding: 1rem;
+    grid-area: nuevatarea;
+}
+
+.nueva_tarea p {
+    font-size: 1.2rem;
+}
+
+.nueva_tarea input {
+    width: 380px;
+    height: 1.8rem;
+
+}
+
+.nueva_tarea button {
+    background-color: rgb(67, 201, 67);
+    color: aliceblue;
+    border-radius: 5px;
+    width: 72px;
+    height: 28px;
+    font-size: 0.9rem;
+}
+
+.idtareas {
+    grid-area: idtarea;
+    font-weight: 700;
+    overflow: auto;
+    ;
+
+}
+
+.resumen_tareas {
+    grid-area: resumentareas;
+    padding-left: 10px;
+}
+
+.tareas {
+    border: solid black 2px;
+    width: 500px;
+    height: 300px;
+    background-color: rgb(164, 196, 255);
+    display: grid;
+    grid-template-areas:
+        "titulo titulo"
+        "nuevatarea nuevatarea"
+        "resumentareas idtarea";
+    grid-template-rows: 23% 35%;
+    grid-template-columns: 40% 60%;
+}
+
+table tr td {
+    text-align: center;
+}
+
+table tr #t1 {
+    width: 20px;
+}
+
+table tr #t2 {
+    width: 190px;
+}
+
+li {
+    list-style-type: none;
+}
+
+.tachar {
+    text-decoration: line-through #056d68 2px;
+}
