@@ -1,13 +1,13 @@
-const seccionTareas = document.getElementById("listatareas")
-const tareaInput = document.getElementById("nuevaTarea")
-const boton = document.getElementById("agregarTarea")
-const tareasTotales = document.getElementById("tareasTotales")
-const tareasRealizadas = document.getElementById('tareasrealizadas')
+const listaTareas = document.getElementById("lista_tareas")
+const tareaInput = document.getElementById("input_tarea")
+const boton = document.getElementById("agregar_tarea")
+const tareasTotales = document.getElementById("tareas_totales")
+const tareasRealizadas = document.getElementById('tareas_realizadas')
 
 const tareas = [
-    { id: 1, tareatipo: 'Ir de compras', realizada: false },
-    { id: 2, tareatipo: 'Estudiar', realizada: false },
-    { id: 3, tareatipo: 'Pasear al perro', realizada: false }
+    { id: 1234532342342, tareatipo: 'Ir de compras', realizada: false },
+    { id: 2234552342342, tareatipo: 'Estudiar', realizada: false },
+    { id: 3234244567457, tareatipo: 'Pasear al perro', realizada: false }
 ]
 boton.addEventListener("click", () => {
     if (tareaInput.value === '') return
@@ -17,24 +17,23 @@ boton.addEventListener("click", () => {
 })
 
 const agregar = () => {
-    seccionTareas.innerHTML = tareas.map((tarea) =>
-        `<li>${tarea.id} ${tarea.tareatipo}
-    <button onclick='eliminar(${tarea.id})'>Quitar</button>
-         <input type="checkbox" id="realizada"> 
+    listaTareas.innerHTML = tareas.map((tarea) =>
+        `<li>${tarea.id}
+            <span class="${tarea.realizada ? 'tachar' : ''}" onclick="cambiar(${tarea.id})">${tarea.tareatipo}</span>
+    <button onclick='eliminar(${tarea.id})'>Quitar</button> 
          </li>`
     ).join('')
-
+    renderizar()
 }
 
 const eliminar = (id) => {
     const index = tareas.findIndex((tarea) => tarea.id === id)
     tareas.splice(index, 1)
     agregar()
+    renderizar()
 }
 
-agregar()
-
-const cambiarStatus = () => {
+const cambiar = (id) => {
     const tarea = tareas.find((tarea) => tarea.id === id)
     if (tarea) {
         tarea.realizada = !tarea.realizada
@@ -42,27 +41,23 @@ const cambiarStatus = () => {
     }
 }
 
-
 const renderizar = () => {
-    seccionTareas.innerHTML = tareas.map(tarea =>
+    const html = tareas.map(tarea =>
         `<li>${tarea.id}
-        <span class="${tarea.realizada ? 'tachar' : ''}" onclick="cambiarStatus(${tarea.id})">${tarea.tareatipo}</span>
+        <span class="${tarea.realizada ? 'tachar' : ''}" onclick='cambiar(${tarea.id})'>${tarea.tareatipo}</span>
         <button onclick='eliminar(${tarea.id})'>Quitar</button>
-        <input type="checkbox" id="${tarea.realizada ? 'realizada' : ''}" onclick="cambiarStatus(${tarea.id})">
         </li>`
     ).join('')
 
     //Contar tareas 
-    const tareasrealizadass = tareas.filter(tarea => tarea.realizada).length
-    const tareasTot = tareas.lenght
-    seccionTareas.innerHTML = html
-    tareasRealizadas.innerHTML = tareasrealizadass
-    tareasTotales.innerHTML = tareasTot
+    const trealizadas = tareas.filter(tarea => tarea.realizada).length
+    listaTareas.innerHTML = html
+    tareasRealizadas.innerHTML = trealizadas
+    tareasTotales.innerHTML = tareas.length
 }
 renderizar()
 
 
-// si existe ? true(verdadera) : false (falso)
 
 
 
